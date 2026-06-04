@@ -39,14 +39,44 @@ This makes MyFlora independent for its supported flower set while still keeping 
 
 ## Current Offline Coverage
 
-The shipped on-device model is trained for:
+Two on-device classifiers are bundled. The active one is set in
+`ml/FlowerClassifier.kt` (`ACTIVE_BACKEND`).
+
+### 1. PlantNet-300K classifier — 1081 species (primary on-device backend)
+
+Trained on the full
+[PlantNet-300K](https://plantnet.org/2021/04/07/a-plantnet-dataset-for-machine-learning-research/)
+dataset (1,081 plant species) and used as the offline fallback when the
+PlantNet REST API is unavailable.
+
+- **Architecture**: MobileNetV3-Small (TPU-trained, mixed-bfloat16, AdamW +
+  cosine warm-up, label smoothing, two-phase head + fine-tune)
+- **Input**: 224 × 224 × 3
+- **Output**: 1,081-class softmax
+- **Quantization**: int8 (post-training, with representative-set calibration)
+
+Training notebook:
+[`ml/notebooks/train_plantnet300k_mobilenetv3.ipynb`](ml/notebooks/train_plantnet300k_mobilenetv3.ipynb)
+— runs on Kaggle TPU v5e-8 against the
+`noahbadoa/plantnet-300k-images` dataset.
+
+Trained model download:
+[**flora_flower_classifier.tflite** (Google Drive)](https://drive.google.com/file/d/1aKnT9ZjJnhEy02mBb55L15IYTiuKQo6Z/view?usp=sharing)
+— place it at
+`app/src/main/assets/models/plantnet300k.tflite` to ship it with the app.
+The file is not committed to the repo because it exceeds GitHub's 100 MB
+per-file hard limit.
+
+### 2. Roboflow Malaysian flowers classifier — 4 species (dormant fallback)
+
+Earlier model retained as a switchable backend for the Malaysian flower set:
 
 - Bougainvillea
 - Crape Jasmine
 - Hibiscus
 - Ixora
 
-Anything outside those four is more likely to rely on PlantNet.
+Anything outside those four falls back to the PlantNet API.
 
 ## Dataset and Training Pipeline
 

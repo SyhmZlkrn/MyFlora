@@ -41,7 +41,7 @@ app/src/main/assets/models/plantnet300k.tflite
 
 # Local docs / drafts that shouldn't ship to a public repo.
 PRESENTATION.md
-ml/notebooks/
+ml/notebooks/colab_train_plantnet300k.ipynb
 
 # Claude Code local config
 .claude/
