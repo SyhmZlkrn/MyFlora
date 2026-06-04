@@ -42,3 +42,6 @@ app/src/main/assets/models/plantnet300k.tflite
 # Local docs / drafts that shouldn't ship to a public repo.
 PRESENTATION.md
 ml/notebooks/
+
+# Claude Code local config
+.claude/
