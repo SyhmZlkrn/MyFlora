@@ -80,6 +80,81 @@ Anything outside those four falls back to the PlantNet API.
 
 ## Dataset and Training Pipeline
 
+Two independent pipelines back the two on-device classifiers.
+
+### A. PlantNet-300K — MobileNetV3-Small (primary on-device backend)
+
+Dataset source:
+
+- PlantNet-300K (Kaggle dataset slug `noahbadoa/plantnet-300k-images`)
+- 1,081 plant species, ~306,000 images
+- License: as published on Kaggle / PlantNet
+
+Training flow:
+
+1. Pull the Kaggle dataset onto a TPU runtime (notebook is written for
+   Kaggle TPU v5e-8, mixed-bfloat16, AdamW + cosine warm-up).
+2. Build a MobileNetV3-Small backbone with `imagenet` weights and a
+   1,081-class softmax head.
+3. **Phase 1** — freeze the backbone, warm up the classification head for
+   3 epochs at `lr=1e-3`.
+4. **Phase 2** — unfreeze the top 80 backbone layers and fine-tune at a
+   peak `lr=5e-4` with cosine warm-up, label smoothing `0.05`, weight
+   decay `1e-4`, gradient clip `1.0`, inverse-frequency class weights to
+   counter long-tail imbalance.
+5. Post-training int8 quantize with a 300-sample representative dataset,
+   export as `flora_flower_classifier.tflite` (float32 input/output).
+
+Notebook:
+
+- `ml/notebooks/train_plantnet300k_mobilenetv3.ipynb`
+
+Trained model download (not committed because it exceeds GitHub's 100 MB
+hard limit):
+
+- [flora_flower_classifier.tflite — Google Drive](https://drive.google.com/file/d/1aKnT9ZjJnhEy02mBb55L15IYTiuKQo6Z/view?usp=sharing)
+
+Drop the downloaded file in:
+
+- `app/src/main/assets/models/plantnet300k.tflite`
+
+### B. PyTorch AlexNet → TFLite conversion (alternative pipeline)
+
+If you have a PyTorch AlexNet checkpoint trained on PlantNet-300K
+(`best_model.pth`, 1,081 classes), the repo ships a script that converts
+it directly into the same `plantnet300k.tflite` asset slot.
+
+Pipeline:
+
+1. Build `torchvision.models.alexnet(num_classes=1081)`.
+2. Load the `.pth` state dict, stripping the `module.` prefix left over
+   from `DataParallel` training.
+3. Wrap the model so its `forward()` returns a softmax probability vector
+   (the Kotlin classifier does not apply softmax itself).
+4. Export ONNX (opset 17) with input shape `(1, 3, 224, 224)`.
+5. Run `onnx2tf` to produce the TFLite file with the automatic NCHW →
+   NHWC transpose required for Android tensors.
+6. Copy the result into `app/src/main/assets/models/plantnet300k.tflite`.
+
+Run it:
+
+```powershell
+$env:PYTHONPATH=(Resolve-Path .\.pydeps).Path
+$env:PYTHONNOUSERSITE='1'
+python .\ml\scripts\convert_alexnet_pth_to_tflite.py `
+    --pth path\to\best_model.pth
+```
+
+Output: a float32 TFLite (~245 MB). Same input/output contract as the
+MobileNetV3 model, so the Kotlin classifier and label files do not need
+to change.
+
+Script:
+
+- `ml/scripts/convert_alexnet_pth_to_tflite.py`
+
+### C. Roboflow Malaysian flowers — MobileNetV2 (dormant fallback)
+
 Dataset source:
 
 - Roboflow Universe project: `my-workspace-rnskj/malaysian-flower-detection`
@@ -95,22 +170,25 @@ Training flow:
 4. Export the best model as `.tflite`.
 5. Copy the model and labels into the Android app assets.
 
-Scripts added:
+Scripts:
 
 - `ml/scripts/download_roboflow_dataset.py`
 - `ml/scripts/build_classification_dataset.py`
 - `ml/scripts/train_flower_classifier.py`
 
-Generated local folders:
+### Generated local folders (gitignored)
 
 - `ml/downloads/`
 - `ml/generated/`
 - `ml/models/`
 
-These folders are ignored by Git. The shipped app assets are copied into:
+Shipped app asset paths:
 
-- `app/src/main/assets/models/flora_flower_classifier.tflite`
-- `app/src/main/assets/models/flora_flower_labels.json`
+- `app/src/main/assets/models/plantnet300k.tflite` (1,081-class — primary)
+- `app/src/main/assets/models/plantnet300k_labels.txt`
+- `app/src/main/assets/models/plantnet300k_common_names.json`
+- `app/src/main/assets/models/roboflow_flowers.tflite` (4-class dormant)
+- `app/src/main/assets/models/roboflow_labels.txt`
 
 ## Training Commands
 
@@ -147,18 +225,29 @@ python .\ml\scripts\train_flower_classifier.py
 
 ## Model Notes
 
-The current shipped model was trained from the cropped Roboflow dataset generated from version 2 of the project.
+### Primary — PlantNet-300K MobileNetV3-Small
 
-Current saved metrics:
+- Trained on the full 1,081-class PlantNet-300K dataset.
+- Input: `224 × 224 × 3`, float32 (input/output).
+- Quantization: int8 weights with float32 I/O (post-training, 300-image
+  representative calibration).
+- Used as the offline backup when the PlantNet REST API is unreachable
+  or returns a low-confidence result.
 
-- image size: `224`
-- labels: `Bougainvillea`, `Crape Jasmine`, `Hibiscus`, `Ixora`
-- test accuracy on the generated cropped test split: `1.0`
+### Alternative — PlantNet-300K AlexNet (converted from .pth)
 
-Important note:
+- Same dataset (1,081 classes), AlexNet backbone, ~58 M parameters.
+- Float32 TFLite (~245 MB), no quantization.
+- Drop-in replacement for the MobileNetV3 file — same input/output
+  contract.
 
-- that accuracy comes from a small controlled test split of 90 cropped samples
-- it is useful as a project metric, but it should not be treated as proof of real-world perfection
+### Dormant — Roboflow Malaysian flowers MobileNetV2
+
+- Image size: `224`.
+- Labels: `Bougainvillea`, `Crape Jasmine`, `Hibiscus`, `Ixora`.
+- Test accuracy on the generated cropped test split: `1.0` — but only
+  90 samples in a controlled split, so treat it as a project metric, not
+  as proof of real-world perfection.
 
 ## API Keys
 
