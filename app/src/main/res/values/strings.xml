@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MyFlora</string>
+
+    <!-- Bottom Navigation -->
+    <string name="nav_dashboard">Dashboard</string>
+    <string name="nav_identify">Identify</string>
+    <string name="nav_diagnose">Diagnose</string>
+    <string name="nav_my_plants">My Plants</string>
+
+    <!-- Dashboard -->
+    <string name="dashboard_title">My Garden</string>
+    <string name="dashboard_greeting">Hello, Plant Lover!</string>
+    <string name="dashboard_plants_count">%d Plants</string>
+    <string name="dashboard_tasks_today">Tasks Today</string>
+    <string name="dashboard_overdue_tasks">Overdue Tasks</string>
+    <string name="dashboard_health_alerts">Health Alerts</string>
+    <string name="dashboard_no_plants">No plants yet. Start by identifying your first flower!</string>
+
+    <!-- Identification -->
+    <string name="identify_title">Identify Flower</string>
+    <string name="identify_subtitle">Take a photo or select from gallery</string>
+    <string name="identify_take_photo">Take Photo</string>
+    <string name="identify_select_photo">Choose from Gallery</string>
+    <string name="identify_analyzing">Analyzing image…</string>
+    <string name="identify_result_title">Identification Result</string>
+    <string name="identify_confidence">Confidence: %.1f%%</string>
+    <string name="identify_add_to_garden">Add to My Garden</string>
+    <string name="identify_retry">Try Another Photo</string>
+    <string name="identify_no_result">Could not identify the flower. Please try again with a clearer photo.</string>
+
+    <!-- Disease Diagnosis -->
+    <string name="diagnose_title">Diagnose Plant</string>
+    <string name="diagnose_subtitle">Check your plant\'s health</string>
+    <string name="diagnose_select_plant">Select a plant from your garden</string>
+    <string name="diagnose_take_photo">Take Photo of Issue</string>
+    <string name="diagnose_analyzing">Analyzing plant health…</string>
+    <string name="diagnose_result_title">Diagnosis Result</string>
+    <string name="diagnose_healthy">Your plant is healthy!</string>
+    <string name="diagnose_disease_detected">Disease Detected</string>
+    <string name="diagnose_severity">Severity: %s</string>
+    <string name="diagnose_treatment">Treatment</string>
+    <string name="diagnose_prevention">Prevention</string>
+    <string name="diagnose_save_log">Save to Health Log</string>
+
+    <!-- Plant Detail -->
+    <string name="plant_detail_title">Plant Details</string>
+    <string name="plant_detail_species">Species</string>
+    <string name="plant_detail_health">Health Status</string>
+    <string name="plant_detail_added_on">Added on</string>
+    <string name="plant_detail_location">Location</string>
+    <string name="plant_detail_notes">Notes</string>
+    <string name="plant_detail_care_schedule">Care Schedule</string>
+    <string name="plant_detail_health_log">Health Log</string>
+    <string name="plant_detail_care_guide">Care Guide</string>
+    <string name="plant_detail_edit">Edit</string>
+    <string name="plant_detail_delete">Delete Plant</string>
+
+    <!-- Care Schedule -->
+    <string name="care_watering">Watering</string>
+    <string name="care_fertilizing">Fertilizing</string>
+    <string name="care_pruning">Pruning</string>
+    <string name="care_repotting">Repotting</string>
+    <string name="care_misting">Misting</string>
+    <string name="care_next_due">Next: %s</string>
+    <string name="care_overdue">Overdue!</string>
+    <string name="care_mark_done">Mark as Done</string>
+    <string name="care_skip">Skip</string>
+    <string name="care_reschedule">Reschedule</string>
+
+    <!-- Weather Integration -->
+    <string name="weather_current">Current Weather</string>
+    <string name="weather_temperature">%.1f°C</string>
+    <string name="weather_humidity">Humidity: %d%%</string>
+    <string name="weather_uv_index">UV Index: %.1f</string>
+    <string name="weather_recommendation">Care Recommendation</string>
+    <string name="weather_loading">Loading weather…</string>
+    <string name="weather_error">Unable to fetch weather</string>
+
+    <!-- Care Recommendations -->
+    <string name="recommendation_high_temp">Temperature is high. Water more frequently.</string>
+    <string name="recommendation_low_humidity">Low humidity. Consider misting your plants.</string>
+    <string name="recommendation_high_uv">High UV. Provide shade during midday.</string>
+    <string name="recommendation_rain">Rain expected. Reduce watering today.</string>
+
+    <!-- Species Information -->
+    <string name="species_scientific_name">Scientific Name</string>
+    <string name="species_family">Family</string>
+    <string name="species_care_level">Care Level</string>
+    <string name="species_native">Native to</string>
+    <string name="species_bloom_season">Bloom Season</string>
+    <string name="species_max_height">Max Height</string>
+    <string name="species_description">Description</string>
+
+    <!-- Care Requirements -->
+    <string name="requirements_sunlight">Sunlight</string>
+    <string name="requirements_water">Watering</string>
+    <string name="requirements_soil">Soil</string>
+    <string name="requirements_fertilizer">Fertilizer</string>
+    <string name="requirements_temperature">Temperature</string>
+    <string name="requirements_humidity">Humidity</string>
+
+    <!-- Common Actions -->
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_delete">Delete</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_done">Done</string>
+    <string name="action_retry">Retry</string>
+    <string name="action_close">Close</string>
+    <string name="action_view_all">View All</string>
+
+    <!-- Permissions -->
+    <string name="permission_camera_required">Camera permission is required to take photos</string>
+    <string name="permission_location_required">Location permission is required for weather-based recommendations</string>
+    <string name="permission_storage_required">Storage permission is required to save images</string>
+
+    <!-- Errors -->
+    <string name="error_generic">Something went wrong. Please try again.</string>
+    <string name="error_network">Network error. Please check your connection.</string>
+    <string name="error_no_camera">No camera found on this device.</string>
+    <string name="error_image_processing">Failed to process image.</string>
+    <string name="error_model_not_found">ML model not found. Please reinstall the app.</string>
+
+    <!-- Empty States -->
+    <string name="empty_plants">No plants in your garden yet</string>
+    <string name="empty_tasks">No tasks scheduled</string>
+    <string name="empty_health_logs">No health logs recorded</string>
+    <string name="empty_add_plant">Add your first plant to get started!</string>
+
+    <!-- Notifications -->
+    <string name="notification_channel_name">Plant Care Reminders</string>
+    <string name="notification_channel_description">Reminders for watering, fertilizing, and other plant care tasks</string>
+    <string name="notification_title_water">Time to water %s</string>
+    <string name="notification_title_fertilize">Time to fertilize %s</string>
+    <string name="notification_content">Don\'t forget to take care of your plant!</string>
+
+    <!-- Onboarding -->
+    <string name="onboarding_welcome_title">Welcome to MyFlora</string>
+    <string name="onboarding_welcome_desc">Your personal plant companion</string>
+    <string name="onboarding_identify_title">Identify Flowers</string>
+    <string name="onboarding_identify_desc">Snap a photo and instantly identify local Malaysian flowers</string>
+    <string name="onboarding_diagnose_title">Diagnose Diseases</string>
+    <string name="onboarding_diagnose_desc">Keep your plants healthy with AI-powered disease detection</string>
+    <string name="onboarding_care_title">Smart Care Plans</string>
+    <string name="onboarding_care_desc">Get personalized care recommendations based on weather and plant needs</string>
+    <string name="onboarding_get_started">Get Started</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_next">Next</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_notifications">Notifications</string>
+    <string name="settings_location">Location Services</string>
+    <string name="settings_about">About</string>
+    <string name="settings_version">Version</string>
+    <string name="settings_privacy">Privacy Policy</string>
+    <string name="settings_clear_data">Clear Data</string>
+
+    <!-- Misc -->
+    <string name="loading">Loading…</string>
+    <string name="processing">Processing…</string>
+    <string name="search">Search</string>
+    <string name="filter">Filter</string>
+    <string name="sort">Sort</string>
+    <string name="all">All</string>
+    <string name="healthy">Healthy</string>
+    <string name="sick">Sick</string>
+    <string name="critical">Critical</string>
+    <string name="recovering">Recovering</string>
+</resources>

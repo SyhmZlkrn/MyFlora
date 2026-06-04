@@ -1,0 +1,22 @@
+# Copy this file to `local.properties` and fill in real values.
+# DO NOT commit local.properties — it is .gitignored.
+#
+# Android SDK path on your machine (Android Studio fills this in automatically
+# the first time you open the project).
+sdk.dir=/path/to/Android/Sdk
+
+# OpenWeatherMap — runtime weather card on Dashboard.
+# Sign up at https://openweathermap.org/ → API keys.
+OPENWEATHER_API_KEY=
+
+# PlantNet v2 — primary flower identification source.
+# Sign up at https://my.plantnet.org/ → Developer account.
+PLANTNET_API_KEY=
+
+# Roboflow — only needed if you re-run the dataset download / retraining
+# scripts in ml/scripts/. Not required to run the app.
+ROBOFLOW_API_KEY=
+
+# Web3Forms — backs the Help & Support form submission.
+# Sign up at https://web3forms.com/ and verify the support email.
+WEB3FORMS_ACCESS_KEY=

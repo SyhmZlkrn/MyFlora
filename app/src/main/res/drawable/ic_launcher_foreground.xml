@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Adaptive icon foreground: stylized leaf in the safe 66dp center of the 108dp
+  viewport. Keep critical artwork inside x:21..87, y:21..87 — the launcher may
+  scale, mask, or parallax-shift the foreground layer.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Leaf body (white, classic teardrop tilted top-right → bottom-left). -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M30,82
+            C 30,46 56,30 82,30
+            C 82,66 56,82 30,82 Z" />
+
+    <!-- Central vein (subtle, slightly green to read on the white). -->
+    <path
+        android:strokeColor="#FF2E7D32"
+        android:strokeWidth="2.2"
+        android:strokeLineCap="round"
+        android:pathData="M34,78 L78,34" />
+
+    <!-- Side veins, fan from midrib. -->
+    <path
+        android:strokeColor="#FF2E7D32"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round"
+        android:pathData="M44,72 L62,54" />
+    <path
+        android:strokeColor="#FF2E7D32"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round"
+        android:pathData="M52,76 L72,56" />
+    <path
+        android:strokeColor="#FF2E7D32"
+        android:strokeWidth="1.4"
+        android:strokeLineCap="round"
+        android:pathData="M40,64 L58,46" />
+
+    <!-- Short stem extending toward bottom-left corner of the safe zone. -->
+    <path
+        android:strokeColor="#FFFFFFFF"
+        android:strokeWidth="3.2"
+        android:strokeLineCap="round"
+        android:pathData="M30,82 L22,90" />
+</vector>

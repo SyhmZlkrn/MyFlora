@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Primary Colors -->
+    <color name="primary_green">#4CAF50</color>
+    <color name="primary_green_dark">#388E3C</color>
+    <color name="primary_green_light">#81C784</color>
+
+    <!-- Secondary Colors -->
+    <color name="secondary_light_green">#8BC34A</color>
+    <color name="secondary_light_green_dark">#689F38</color>
+    <color name="secondary_light_green_light">#AED581</color>
+
+    <!-- Accent Colors -->
+    <color name="accent_amber">#FFC107</color>
+    <color name="accent_amber_dark">#FFA000</color>
+    <color name="accent_amber_light">#FFD54F</color>
+
+    <!-- Background Colors -->
+    <color name="background_white">#FFFFFF</color>
+    <color name="background_light">#FAFAFA</color>
+    <color name="background_gray">#F5F5F5</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+    <color name="text_tertiary">#9E9E9E</color>
+    <color name="text_white">#FFFFFF</color>
+
+    <!-- Status Colors -->
+    <color name="status_healthy">#4CAF50</color>
+    <color name="status_sick">#FF9800</color>
+    <color name="status_critical">#F44336</color>
+    <color name="status_recovering">#2196F3</color>
+
+    <!-- Error and Warning -->
+    <color name="error">#F44336</color>
+    <color name="error_dark">#D32F2F</color>
+    <color name="warning">#FF9800</color>
+    <color name="success">#4CAF50</color>
+
+    <!-- Divider and Border -->
+    <color name="divider">#BDBDBD</color>
+    <color name="border">#E0E0E0</color>
+
+    <!-- Card and Surface -->
+    <color name="card_background">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+
+    <!-- Disease Severity Colors -->
+    <color name="severity_mild">#8BC34A</color>
+    <color name="severity_moderate">#FF9800</color>
+    <color name="severity_severe">#F44336</color>
+
+    <!-- Care Level Colors -->
+    <color name="care_easy">#4CAF50</color>
+    <color name="care_moderate">#FF9800</color>
+    <color name="care_difficult">#F44336</color>
+
+    <!-- Transparent -->
+    <color name="transparent">#00000000</color>
+    <color name="semi_transparent_black">#80000000</color>
+</resources>

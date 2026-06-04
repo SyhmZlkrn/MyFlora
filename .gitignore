@@ -1,0 +1,44 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+.pydeps/
+python_packages/
+scratch/
+.tmp/
+.venv/
+.venv-ml/
+**/.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.idea/
+ml/downloads/
+ml/generated/
+ml/models/
+ml/plantnet300k/.venv/
+ml/plantnet300k/data/
+ml/plantnet300k/output/
+*.pth
+*.onnx
+*.npy
+
+# Large ML model assets — exceed GitHub 100MB hard limit.
+# Regenerate via ml/scripts/convert_alexnet_pth_to_tflite.py (see README).
+app/src/main/assets/models/plantnet300k.tflite
+
+# Local docs / drafts that shouldn't ship to a public repo.
+PRESENTATION.md
+ml/notebooks/
