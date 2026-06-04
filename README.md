@@ -2,6 +2,16 @@
 
 MyFlora is an Android plant care app built with Jetpack Compose, Room, CameraX, and Retrofit. It combines flower identification, basic disease diagnosis, weather-aware care guidance, a personal plant collection, and per-user care scheduling.
 
+## Interface Preview
+
+| Sign In | Dashboard | Care Schedule |
+|:---:|:---:|:---:|
+| ![Sign In](docs/screenshots/01_login.jpg) | ![Dashboard](docs/screenshots/02_dashboard.jpg) | ![Care Schedule](docs/screenshots/03_care_schedule.jpg) |
+| **My Plants** | **Profile** | **Disease Library** |
+| ![My Plants](docs/screenshots/04_my_plants.jpg) | ![Profile](docs/screenshots/05_profile.jpg) | ![Disease Library](docs/screenshots/06_disease_library.jpg) |
+| **Plant Identification** | | |
+| ![Plant Identification](docs/screenshots/07_identification.jpg) | | |
+
 ## What Changed
 
 This update adds a real offline flower-identification pipeline to MyFlora and keeps PlantNet as the secondary option.
